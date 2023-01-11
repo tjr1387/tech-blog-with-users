@@ -1,20 +1,15 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Entry extends Model {}
+class Comment extends Model {}
 
-Entry.init(
+Comment.init(
   {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
-    },
-    title: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      defaultValue: 'Untitled'
     },
     content: {
       type: DataTypes.STRING,
@@ -29,19 +24,27 @@ Entry.init(
     },
     user_id: {
       type: DataTypes.INTEGER,
+      allowNull: true,    // when a user is deleted, I want their comments to NOT be deleted (a la Reddit)
       references: {
         model: 'user',
         key: 'id',
       },
     },
+    entry_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'entry',
+        key: 'id',
+      },
+    }, 
   },
   {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'entry',
+    modelName: 'comment',
   }
 );
 
-module.exports = Entry;
+module.exports = Comment;
