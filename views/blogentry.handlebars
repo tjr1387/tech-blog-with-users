@@ -1,2 +1,22 @@
-{{!-- shows ONE post, as well as associated comments (loop) --}}
+{{!-- shows ONE post, as well as associated comments AND their associated users (loop) --}}
   {{!-- no options to alter/delete/create POSTS, BUT options (if logged in) to create/edit/delete comments (but U and D only allowed on comments create dby that user --}}
+<section id="blog-entry">
+<div class="row mb-3">
+  <h2>{{entry.title}}</h2>
+  <div>
+    <p>{{entry.content}}</p>
+    <br>
+    <p>By {{entry.user.name}} on {{entry.date_created}}</p>
+  </div>
+</div>
+</section>
+<section class="entry-comments">
+  {{#each entry.comments as |comment|}}
+  <div>
+    <p>{{comment.content}}</p>
+    <br>
+    <p>By {{comment.user.name}} on {{comment.date_created}}</p>
+  </div>
+  {{/each}}
+</section>
+{{!-- still needs CUD options --}}
