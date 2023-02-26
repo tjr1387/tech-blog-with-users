@@ -15,7 +15,7 @@ router.get('/login', (req, res) => {
 });
 
 // Renders the homepage (all entries from everyone)
-router.get('/home', (res, res) => {
+router.get('/', (req, res) => {
   // get and serialize ALL entries (just entries, no comment inclusion)
   res.render('home');   // need to pass in the data and 'logged_in'
 });

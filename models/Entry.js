@@ -23,7 +23,7 @@ Entry.init(
     date_created: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: Date.now(),
+      defaultValue: DataTypes.NOW,
       validate: {
         isDate: true,
       },
