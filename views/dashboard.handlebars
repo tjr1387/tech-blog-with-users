@@ -1,2 +1,17 @@
 {{!-- shows all blogposts from the one user who is logged in --}}
-  {{!-- will have C, U and D options --}}
+<section class="blog-entries">
+  <h1 class="mb-2">Your Entries:</h1>
+  {{#each entries as |entry|}}
+  <div class="row mb-3">
+    <h2>
+      <a href="/{{entry.user.id}}/{{entry.id}}">{{entry.title}}</a>
+    </h2>
+    <div>
+      <p>{{entry.content}}</p>
+      <br>
+      <p>Created on {{entry.date_created}}</p>
+    </div>
+  </div>
+  {{/each}}
+  {{!-- needs C, U and D options --}}
+</section>
