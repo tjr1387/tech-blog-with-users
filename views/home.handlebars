@@ -1,1 +1,15 @@
 {{!-- shows all blog posts in the DB (not their comments) --}}
+<section class="blog-entry">
+  {{#each entries as |entry|}}
+  <div class="row mb-3">
+    <h2>
+      <a href="/{{entry.user.id}}/{{entry.id}}">{{entry.title}}</a>
+    </h2>
+    <div>
+      <p>{{entry.content}}</p>
+      <br>
+      <p>By {{entry.user.name}} on {{entry.date_created}}</p>
+    </div>
+  </div>
+  {{/each}}
+</section>
