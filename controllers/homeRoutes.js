@@ -69,10 +69,8 @@ router.get('/dashboard/:username', withAuth, async (req, res) => {
 });
 
 // Renders one of a user's entries, along with the associated comments
-
-// ! Currently doesnt include comments!
 router.get('/entry/:username/:entryId', async (req, res) => {
-  // Grab entry by its id (via params)
+  // Grab entry by its id, including associated comments, also with THEIR associated user (yikes)
   try {
     const entryData = await Entry.findByPk(req.params.entryId, {
       include: [
@@ -80,13 +78,20 @@ router.get('/entry/:username/:entryId', async (req, res) => {
           model: User,
           attributes: ['name'],
         },
+        {
+          model: Comment,
+          include: [
+            {
+              model: User,
+              attributes: ['name'],
+            }
+          ]
+        }
       ],
     });
 
     // Serialize
     const entry = entryData.get({ plain: true });
-
-    console.log(entry);
 
     // Pass data into render
     res.render('blogentry', {
