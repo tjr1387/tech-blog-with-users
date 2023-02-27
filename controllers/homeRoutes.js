@@ -11,25 +11,37 @@ router.get('/login', (req, res) => {
     return;
   }
 
-  res.render('login', { logged_in: req.session.logged_in });
+  res.render('login', {
+    logged_in: req.session.logged_in,
+    username: req.session.username
+  });
 });
 
 // Renders the homepage (all entries from everyone)
 router.get('/', (req, res) => {
   // get and serialize ALL entries (just entries, no comment inclusion)
-  res.render('home', { logged_in: req.session.logged_in });   // need to pass in the data and 'logged_in'
+  res.render('home', {
+    logged_in: req.session.logged_in,
+    username: req.session.username
+  });
 });
 
 // Renders the signed in user's dashboard
-router.get('/dashboard/:userId', (req, res) => {  //pass in withAtuh middleware
+router.get('/dashboard/:username', (req, res) => {  //pass in withAtuh middleware
   // get and serialze this users entries
-  res.render('dashboard', { logged_in: req.session.logged_in });  // need to pass in the data and 'logged_in'
+  res.render('dashboard', {
+    logged_in: req.session.logged_in,
+    username: req.session.username
+  });
 });
 
 // Renders one of a user's entries, along with the associated comments
-router.get('/entry/:userId/:entryId', (req, res) => {     //dont need to use withAuth here
+router.get('/entry/:username/:entryId', (req, res) => {     //dont need to use withAuth here
   // get and serialize this one entry, and assoc. comments
-  res.render('blogentry', { logged_in: req.session.logged_in }); // need to pass in all that data and 'logged_in'
+  res.render('blogentry', {
+    logged_in: req.session.logged_in,
+    username: req.session.username
+  }); // need to pass in all that data and 'logged_in'
 });
 
 // a 404 page '*' route
