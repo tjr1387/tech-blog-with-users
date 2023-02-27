@@ -4,7 +4,7 @@
   {{#each entries as |entry|}}
   <div class="row mb-3">
     <h2>
-      <a href="/{{entry.user.id}}/{{entry.id}}">{{entry.title}}</a>
+      <a href="entry/{{entry.user.name}}/{{entry.id}}">{{entry.title}}</a> {{!-- this link path isnt be right --}}
     </h2>
     <div>
       <p>{{entry.content}}</p>

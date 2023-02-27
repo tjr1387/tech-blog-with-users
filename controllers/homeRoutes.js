@@ -18,9 +18,23 @@ router.get('/login', (req, res) => {
 });
 
 // Renders the homepage (all entries from everyone)
-router.get('/', (req, res) => {
-  // get and serialize ALL entries (just entries, no comment inclusion)
+router.get('/', async (req, res) => {
+  // Grab all entries, with associated user's name
+  const entryData = await Entry.findAll({
+    include: [
+      {
+        model: User,
+        attributes: ['name'],
+      },
+    ],
+  });
+
+  // Serialize
+  const entries = entryData.map((project) => project.get({ plain: true }));
+
+  // Pass data into render
   res.render('home', {
+    entries,
     logged_in: req.session.logged_in,
     username: req.session.username
   });
