@@ -44,13 +44,28 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Renders the signed in user's dashboard
+// Renders the signed in user's dashboard -- set up so users can only see their own dashboards
 router.get('/dashboard/:username', withAuth, async (req, res) => {
   // get and serialze this users entries
-  res.render('dashboard', {
-    logged_in: req.session.logged_in,
-    username: req.session.username
-  });
+  try {
+    const entryData = await Entry.findAll({
+      where: {
+        user_id: req.session.user_id
+      },
+    });
+
+    // Serialize
+    const entries = entryData.map((project) => project.get({ plain: true }));
+
+    // Pass data into render
+    res.render('dashboard', {
+      entries,
+      logged_in: req.session.logged_in,
+      username: req.session.username
+    });
+  } catch (error) {
+
+  }
 });
 
 // Renders one of a user's entries, along with the associated comments
