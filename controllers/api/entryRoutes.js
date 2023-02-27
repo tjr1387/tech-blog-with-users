@@ -53,7 +53,13 @@ router.delete('/:id', withAuth, async (req, res) => {
 // Create a comment
 router.post('/:id/comments', withAuth, async (req, res) => {
   try {
+    const newComment = await Comment.create({
+      ...req.body,
+      entry_id: req.params.id,
+      user_id: req.session.user_id,
+    });
 
+    res.status(200).json(newComment);
   } catch (error) {
     res.status(500).json(error);
   }
