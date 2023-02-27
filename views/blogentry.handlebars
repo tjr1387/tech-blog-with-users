@@ -2,15 +2,17 @@
   {{!-- no options to alter/delete/create POSTS, BUT options (if logged in) to create/edit/delete comments (but U and D only allowed on comments create dby that user --}}
 <section id="blog-entry">
 <div class="row mb-3">
-  <h2>{{entry.title}}</h2>
+  <h2>{{title}}</h2>
   <div>
-    <p>{{entry.content}}</p>
+    <p>{{content}}</p>
     <br>
-    <p>By {{entry.user.name}} on {{entry.date_created}}</p>
+    <p>By {{user.name}} on {{date_created}}</p>
   </div>
 </div>
 </section>
-<section class="entry-comments">
+
+{{!-- this section will need its variables changed once i include comments --}}
+<section class="entry-comments">    
   {{#each entry.comments as |comment|}}
   <div>
     <p>{{comment.content}}</p>
