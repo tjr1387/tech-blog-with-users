@@ -1,8 +1,10 @@
+// grab this from hidden element, needed for fetch URL on both POST and DELETE
+const entryId = document.querySelector('#hidden-id').textContent; 
+
 const addCommentHandler = async (event) => {
   event.preventDefault();
 
   const commentText = document.querySelector('#comment-body').value.trim();
-  const entryId = document.querySelector('#hidden-id').textContent; // grab this from hidden element, needed for fetch URL
 
   if (commentText) {
     const response = await fetch(`/api/entries/${entryId}/comments`, {
@@ -21,7 +23,27 @@ const addCommentHandler = async (event) => {
   }
 };
 
+const delCommentHandler = async (event) => {
+  if (event.target.hasAttribute('data-id')) {
+    const id = event.target.getAttribute('data-id');
+
+    const response = await fetch(`/api/entries/${entryId}/comments/${id}`, {
+      method: 'DELETE',
+    });
+
+    if (response.ok) {
+      document.location.reload();
+    } else {
+      alert('Failed to delete comment; you can only delete your own comments!');
+    }
+  }
+};
+
 
 document
   .querySelector('#add-comment-form')
   .addEventListener('submit', addCommentHandler);
+
+document
+  .querySelector('.entry-comments')
+  .addEventListener('click', delCommentHandler);

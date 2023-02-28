@@ -15,9 +15,13 @@
     {{#each comments as |comment|}}
     <div class="row border-bottom border-dark mb-2">
       <p>{{comment.content}}</p>
-      <p class="font-italic font-weight-light">By {{comment.user.name}} on {{format_date comment.date_created}}</p>
+      <p class="font-italic font-weight-light">
+        By {{comment.user.name}} on {{format_date comment.date_created}}
+      </p>
+      <button class="btn btn-danger btn-sm delete-comment-btn mb-1" data-id="{{comment.id}}">
+        Delete
+      </button>
     </div>
-    <button class="btn btn-danger btn-sm delete-comment-btn" data-id="{{comment.id}}">Delete</button>
     {{/each}}
   {{else}}
     <p>There are currently no comments on this entry.</p>
