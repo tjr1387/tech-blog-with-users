@@ -1,14 +1,14 @@
 {{!-- shows all blog posts in the DB (not their comments) --}}
-<section class="blog-entries">
+<section class="blog-entries mx-3">
   <h2 class="mb-2">Blog Entries:</h2>
   {{#each entries as |entry|}}
-  <div class="row border-bottom border-dark mb-2">
+  <div class="row border-top border-dark mb-2 p-1 bg-light">
     <h3>
       <a href="entry/{{entry.user.name}}/{{entry.id}}">{{entry.title}}</a>
     </h3>
     <div>
       <p>{{entry.content}}</p>
-      <p>By {{entry.user.name}} on {{format_date entry.date_created}}</p>
+      <p class="text-muted"><em>By {{entry.user.name}} on {{format_date entry.date_created}}</em></p>
     </div>
   </div>
   {{/each}}
