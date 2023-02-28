@@ -36,7 +36,8 @@ router.delete('/:id', withAuth, async (req, res) => {
     });
 
     if (!entryData) {
-      res.status(404).json({ message: 'No entry found with this id' });
+      alert('Bruh you can only delete your own biz');
+      res.status(404).json({ message: `No entry found with this id, or it doesn't belong to you` });
       return;
     }
 
@@ -85,7 +86,8 @@ router.delete('/:id/comments/:commentId', withAuth, async (req, res) => {
     });
 
     if (!commentData) {
-      res.status(404).json({ message: 'No comment found with this id' });
+      alert('Bruh you can only delete your own biz');
+      res.status(404).json({ message: `No comment found with this id, or it doesn't belong to you` });
       return;
     }
 

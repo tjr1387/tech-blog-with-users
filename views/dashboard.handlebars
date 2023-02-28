@@ -1,17 +1,22 @@
 {{!-- shows all blogposts from the one user who is logged in --}}
 <section class="blog-entries">
   <h2 class="mb-2">Your Entries:</h2>
-  {{#each entries as |entry|}}
-  <div class="row mb-3 border-bottom border-dark">
-    <h3>
-      <a href="/entry/{{../username}}/{{entry.id}}">{{entry.title}}</a>
-    </h3>
-    <div>
-      <p>{{entry.content}}</p>
-      <p>Created on {{format_date entry.date_created}}</p>
+  {{#if entries }}
+    {{#each entries as |entry|}}
+    <div class="single-entry row mb-3 border-bottom border-dark">
+      <h3>
+        <a href="/entry/{{../username}}/{{entry.id}}">{{entry.title}}</a>
+      </h3>
+      <div>
+        <p>{{entry.content}}</p>
+        <p>Created on {{format_date entry.date_created}}</p>
+      </div>
+      <button class="btn btn-danger btn-sm delete-entry-btn" data-id="{{entry.id}}">Delete</button>
     </div>
-  </div>
-  {{/each}}
+    {{/each}}
+  {{else}}
+    <p>You currently have no entries.</p>
+  {{/if}}
 </section>
 {{!-- new entry form --}}
 {{#if logged_in}}
