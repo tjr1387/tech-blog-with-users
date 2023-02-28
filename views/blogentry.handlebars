@@ -11,12 +11,17 @@
 </section>
 <section class="entry-comments mx-3">
   <h3>Comments:</h3>
-  {{#each comments as |comment|}}
-  <div class="row border-bottom border-dark mb-2">
-    <p>{{comment.content}}</p>
-    <p class="font-italic font-weight-light">By {{comment.user.name}} on {{format_date comment.date_created}}</p>
-  </div>
-  {{/each}}
+  {{#if comments }}
+    {{#each comments as |comment|}}
+    <div class="row border-bottom border-dark mb-2">
+      <p>{{comment.content}}</p>
+      <p class="font-italic font-weight-light">By {{comment.user.name}} on {{format_date comment.date_created}}</p>
+    </div>
+    <button class="btn btn-danger btn-sm delete-comment-btn" data-id="{{comment.id}}">Delete</button>
+    {{/each}}
+  {{else}}
+    <p>There are currently no comments on this entry.</p>
+  {{/if}}
 </section>
 {{!-- new comment form --}}
 {{#if logged_in}}
