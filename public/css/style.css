@@ -30,3 +30,8 @@ nav a:hover {
   font-weight: 700;
   color: blue;
 }
+
+.delete-entry-btn,
+.delete-comment-btn {
+  max-width: 100px;
+}
