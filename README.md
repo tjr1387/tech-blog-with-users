@@ -26,6 +26,9 @@ Upon visiting the site, you will land at the homepage which displays all blog en
 Link to live site: https://calm-tundra-85233.herokuapp.com/
 
 Screenshot(s):
+![Homepage view](./assets/mockups/homeview.png?raw=true "Homepage view with user logged out")
+![Dashboard view](./assets/mockups/dashboard.png?raw=true "Dashboard view for a logged in user, entries and 'add' form")
+![Blogentry view](./assets/mockups/blogentry.png?raw=true "Blogentry view; shows ONE entry, with comments and 'add comment' form")
 
 
 ## Credits
