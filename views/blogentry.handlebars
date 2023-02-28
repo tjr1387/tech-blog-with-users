@@ -4,6 +4,8 @@
   <div>
     <p>{{content}}</p>
     <p class="font-italic font-weight-light">By {{user.name}} on {{format_date date_created}}</p>
+    {{!-- hide entryId in the DOM because can't use req.params here --}}
+    <span id="hidden-id" hidden>{{id}}</span>
   </div>
 </div>
 </section>
@@ -18,7 +20,7 @@
 </section>
 {{!-- new comment form --}}
 {{#if logged_in}}
-<form class="mt-3 p-2">
+<form class="mt-3 p-2" id="add-comment-form">
   <div class="form-group">
     <label for="comment-body">Leave comment:</label>
     <textarea class="form-control" id="comment-body" 
