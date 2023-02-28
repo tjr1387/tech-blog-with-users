@@ -5,7 +5,7 @@
   <h2>{{title}}</h2>
   <div>
     <p>{{content}}</p>
-    <p>By {{user.name}} on {{date_created}}</p>
+    <p>By {{user.name}} on {{format_date date_created}}</p>
   </div>
 </div>
 </section>
@@ -14,7 +14,7 @@
   {{#each comments as |comment|}}
   <div class="row border-bottom border-dark mb-2">
     <p>{{comment.content}}</p>
-    <p>By {{comment.user.name}} on {{comment.date_created}}</p> {{!-- still need to properly grab the user of the comment, and pass it in --}}
+    <p>By {{comment.user.name}} on {{format_date comment.date_created}}</p> {{!-- still need to properly grab the user of the comment, and pass it in --}}
   </div>
   {{/each}}
 </section>
