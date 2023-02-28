@@ -35,3 +35,7 @@ nav a:hover {
 .delete-comment-btn {
   max-width: 100px;
 }
+
+.single-comment {
+  background-color: aliceblue;
+}

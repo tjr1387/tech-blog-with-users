@@ -1,22 +1,22 @@
 <section id="blog-entry" class="mx-1">
-<div class="row my-3">
+<div class="row border-top border-dark my-3 p-1 bg-light">
   <h2>{{title}}</h2>
   <div>
     <p>{{content}}</p>
-    <p class="font-italic font-weight-light">By {{user.name}} on {{format_date date_created}}</p>
+    <p class="text-muted"><em>By {{user.name}} on {{format_date date_created}}</em></p>
     {{!-- hide entryId in the DOM because can't use req.params here --}}
     <span id="hidden-id" hidden>{{id}}</span>
   </div>
 </div>
 </section>
-<section class="entry-comments mx-3">
-  <h3>Comments:</h3>
+<section class="entry-comments mx-4 border-bottom border-dark">
+  <h3 class="text-success">Comments:</h3>
   {{#if comments }}
     {{#each comments as |comment|}}
-    <div class="row border-bottom border-dark mb-2">
-      <p>{{comment.content}}</p>
-      <p class="font-italic font-weight-light">
-        By {{comment.user.name}} on {{format_date comment.date_created}}
+    <div class="row border-top border-dark mb-2 single-comment">
+      <p class="pt-2">{{comment.content}}</p>
+      <p class="text-muted">
+        <em>By {{comment.user.name}} on {{format_date comment.date_created}}</em>
       </p>
       <button class="btn btn-danger btn-sm delete-comment-btn mb-1" data-id="{{comment.id}}">
         Delete
