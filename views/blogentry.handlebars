@@ -1,21 +1,32 @@
-{{!-- shows ONE post, as well as associated comments AND their associated users (loop) --}}
-  {{!-- no options to alter/delete/create POSTS, BUT options (if logged in) to create/edit/delete comments (but U and D only allowed on comments create dby that user --}}
-<section id="blog-entry">
+<section id="blog-entry" class="mx-1">
 <div class="row my-3">
   <h2>{{title}}</h2>
   <div>
     <p>{{content}}</p>
-    <p>By {{user.name}} on {{format_date date_created}}</p>
+    <p class="font-italic font-weight-light">By {{user.name}} on {{format_date date_created}}</p>
   </div>
 </div>
 </section>
-<section class="entry-comments">
+<section class="entry-comments mx-3">
   <h3>Comments:</h3>
   {{#each comments as |comment|}}
   <div class="row border-bottom border-dark mb-2">
     <p>{{comment.content}}</p>
-    <p>By {{comment.user.name}} on {{format_date comment.date_created}}</p> {{!-- still need to properly grab the user of the comment, and pass it in --}}
+    <p class="font-italic font-weight-light">By {{comment.user.name}} on {{format_date comment.date_created}}</p>
   </div>
   {{/each}}
 </section>
-{{!-- still needs CUD options --}}
+{{!-- new comment form --}}
+{{#if logged_in}}
+<form class="mt-3 p-2">
+  <div class="form-group">
+    <label for="comment-body">Leave comment:</label>
+    <textarea class="form-control" id="comment-body" 
+              aria-describedby="textareaHelp" placeholder="Your comment goes here" rows="6">
+    </textarea>
+  </div>
+  <button type="submit" id="add-comment-btn" class="btn btn-primary mt-1">Add comment</button>
+</form>
+{{/if}}
+
+<script src="/js/blogentry.js"></script>
