@@ -1,0 +1,32 @@
+body {
+  margin: 5px;
+  background-color: rgb(217, 238, 248);
+  font-family: 'Gill Sans', sans-serif;
+}
+
+header {
+  border: 1px solid black;
+}
+
+h1 {
+  background-color: rgb(1, 1, 43);
+  color: white;
+  font-weight: 800;
+  min-height: 70px;
+}
+
+nav {
+  background-color: rgb(255, 161, 219);
+  font-size: 24px;
+  min-height: 40px;
+}
+
+nav a {
+  text-decoration: none;
+  color: black;
+}
+
+nav a:hover {
+  font-weight: 700;
+  color: blue;
+}
